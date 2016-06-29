@@ -1,0 +1,92 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Esta é a lista de serviços para se integrar com a plataforma. Você pode simular requisições utilizando o ambiente de testes.",
+        "version": "0.0.2",
+        "title": "PDB Contest",
+        "termsOfService": "pdbcontesttest1.appspot.com/",
+        "contact": {
+            "email": "promodebolso@promodebolso.com.br"
+        }
+    },
+    "host": "api.uber.com",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/temp": {
+            "post": {
+                "tags": [
+                    "number"
+                ],
+                "summary": "Retorna número(s) da sorte de acordo com os parâmetros recebidos",
+                "description": "",
+                "operationId": "getNumber",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Objeto que é recebido pelo servidor",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna um array de objetos contendo a série, número e data do sorteio.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/GetNumber"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Number": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "pincode": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "xml": {
+                "name": "Order"
+            }
+        },
+        "GetNumber": {
+            "type": "object",
+            "properties": {
+                "serie": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "drawdate": {
+                    "type": "string",
+                    "format": "04/20/201"
+                },
+                "number": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        }
+    }
+}
